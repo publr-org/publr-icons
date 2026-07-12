@@ -123,7 +123,8 @@ export function mountIconSprite(
   prefix = "publr-icon",
 ): SVGSVGElement {
   const existing = doc.getElementById(`${prefix}-sprite`);
-  if (existing instanceof SVGSVGElement) return existing;
+  if (existing?.namespaceURI === "http://www.w3.org/2000/svg")
+    return existing as SVGSVGElement;
   const host = doc.createElement("div");
   host.innerHTML = `<svg id="${prefix}-sprite" style="display:none" aria-hidden="true">${Object.entries(ICONS)
     .map(([name, body]) => `<symbol id="${prefix}-${name}" viewBox="${ICON_VIEWBOX}">${body}</symbol>`)
