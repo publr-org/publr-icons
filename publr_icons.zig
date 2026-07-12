@@ -304,11 +304,11 @@ pub const preformatted: []const u8 =
 ;
 
 pub const pullquote: []const u8 =
-    \\<g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5h16"/><path d="M4 19.5h16"/></g><path d="M11.1 8.35c-2.4.4-3.7 2.05-3.7 4.4v2.95h3.5v-3.55H9.25c.2-1.1.85-1.75 1.85-2.1z"/><path d="M16.55 8.35c-2.4.4-3.7 2.05-3.7 4.4v2.95h3.5v-3.55h-1.65c.2-1.1.85-1.75 1.85-2.1z"/>
+    \\<g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5h16"/><path d="M4 19.5h16"/></g><path d="M11.1 8.35c-2.4.4-3.7 2.05-3.7 4.4v2.95h3.5v-3.55H9.25c.2-1.1.85-1.75 1.85-2.1z" fill="currentColor"/><path d="M16.55 8.35c-2.4.4-3.7 2.05-3.7 4.4v2.95h3.5v-3.55h-1.65c.2-1.1.85-1.75 1.85-2.1z" fill="currentColor"/>
 ;
 
 pub const quote: []const u8 =
-    \\<path d="M10.75 6.75c-3.4.6-5.25 2.9-5.25 6.3v4.2h5v-5.1H8.1c.3-1.55 1.2-2.5 2.65-2.95z"/><path d="M18.5 6.75c-3.4.6-5.25 2.9-5.25 6.3v4.2h5v-5.1h-2.4c.3-1.55 1.2-2.5 2.65-2.95z"/>
+    \\<path d="M10.75 6.75c-3.4.6-5.25 2.9-5.25 6.3v4.2h5v-5.1H8.1c.3-1.55 1.2-2.5 2.65-2.95z" fill="currentColor"/><path d="M18.5 6.75c-3.4.6-5.25 2.9-5.25 6.3v4.2h5v-5.1h-2.4c.3-1.55 1.2-2.5 2.65-2.95z" fill="currentColor"/>
 ;
 
 pub const redo: []const u8 =
