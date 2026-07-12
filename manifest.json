@@ -1,0 +1,410 @@
+{
+  "schemaVersion": 1,
+  "viewBox": "0 0 24 24",
+  "icons": [
+    {
+      "name": "accordion",
+      "file": "accordion.svg"
+    },
+    {
+      "name": "alert-hexagon",
+      "file": "alert-hexagon.svg"
+    },
+    {
+      "name": "alert-triangle",
+      "file": "alert-triangle.svg"
+    },
+    {
+      "name": "arrow-left",
+      "file": "arrow-left.svg"
+    },
+    {
+      "name": "audio",
+      "file": "audio.svg"
+    },
+    {
+      "name": "bold",
+      "file": "bold.svg"
+    },
+    {
+      "name": "bookmark",
+      "file": "bookmark.svg"
+    },
+    {
+      "name": "button",
+      "file": "button.svg"
+    },
+    {
+      "name": "buttons",
+      "file": "buttons.svg"
+    },
+    {
+      "name": "calendar-check-02",
+      "file": "calendar-check-02.svg"
+    },
+    {
+      "name": "calendar-check",
+      "file": "calendar-check.svg"
+    },
+    {
+      "name": "caption",
+      "file": "caption.svg"
+    },
+    {
+      "name": "chart",
+      "file": "chart.svg"
+    },
+    {
+      "name": "check",
+      "file": "check.svg"
+    },
+    {
+      "name": "chevron-down",
+      "file": "chevron-down.svg"
+    },
+    {
+      "name": "chevron-left",
+      "file": "chevron-left.svg"
+    },
+    {
+      "name": "chevron-right",
+      "file": "chevron-right.svg"
+    },
+    {
+      "name": "chevron-up",
+      "file": "chevron-up.svg"
+    },
+    {
+      "name": "clock-check",
+      "file": "clock-check.svg"
+    },
+    {
+      "name": "clock-rewind",
+      "file": "clock-rewind.svg"
+    },
+    {
+      "name": "close",
+      "file": "close.svg"
+    },
+    {
+      "name": "code",
+      "file": "code.svg"
+    },
+    {
+      "name": "column",
+      "file": "column.svg"
+    },
+    {
+      "name": "columns",
+      "file": "columns.svg"
+    },
+    {
+      "name": "components",
+      "file": "components.svg"
+    },
+    {
+      "name": "copy",
+      "file": "copy.svg"
+    },
+    {
+      "name": "cover",
+      "file": "cover.svg"
+    },
+    {
+      "name": "decorative",
+      "file": "decorative.svg"
+    },
+    {
+      "name": "details",
+      "file": "details.svg"
+    },
+    {
+      "name": "dot-filled",
+      "file": "dot-filled.svg"
+    },
+    {
+      "name": "dot-half",
+      "file": "dot-half.svg"
+    },
+    {
+      "name": "dot-outline",
+      "file": "dot-outline.svg"
+    },
+    {
+      "name": "duplicate",
+      "file": "duplicate.svg"
+    },
+    {
+      "name": "edit",
+      "file": "edit.svg"
+    },
+    {
+      "name": "external",
+      "file": "external.svg"
+    },
+    {
+      "name": "file",
+      "file": "file.svg"
+    },
+    {
+      "name": "folder-plus",
+      "file": "folder-plus.svg"
+    },
+    {
+      "name": "folder",
+      "file": "folder.svg"
+    },
+    {
+      "name": "gallery",
+      "file": "gallery.svg"
+    },
+    {
+      "name": "globe",
+      "file": "globe.svg"
+    },
+    {
+      "name": "grid",
+      "file": "grid.svg"
+    },
+    {
+      "name": "group-blocks",
+      "file": "group-blocks.svg"
+    },
+    {
+      "name": "group",
+      "file": "group.svg"
+    },
+    {
+      "name": "heading-level-1",
+      "file": "heading-level-1.svg"
+    },
+    {
+      "name": "heading-level-2",
+      "file": "heading-level-2.svg"
+    },
+    {
+      "name": "heading-level-3",
+      "file": "heading-level-3.svg"
+    },
+    {
+      "name": "heading-level-4",
+      "file": "heading-level-4.svg"
+    },
+    {
+      "name": "heading-level-5",
+      "file": "heading-level-5.svg"
+    },
+    {
+      "name": "heading-level-6",
+      "file": "heading-level-6.svg"
+    },
+    {
+      "name": "heading",
+      "file": "heading.svg"
+    },
+    {
+      "name": "home",
+      "file": "home.svg"
+    },
+    {
+      "name": "html",
+      "file": "html.svg"
+    },
+    {
+      "name": "icon",
+      "file": "icon.svg"
+    },
+    {
+      "name": "image",
+      "file": "image.svg"
+    },
+    {
+      "name": "italic",
+      "file": "italic.svg"
+    },
+    {
+      "name": "link",
+      "file": "link.svg"
+    },
+    {
+      "name": "list-item",
+      "file": "list-item.svg"
+    },
+    {
+      "name": "list-ordered",
+      "file": "list-ordered.svg"
+    },
+    {
+      "name": "list-unordered",
+      "file": "list-unordered.svg"
+    },
+    {
+      "name": "list-view",
+      "file": "list-view.svg"
+    },
+    {
+      "name": "list",
+      "file": "list.svg"
+    },
+    {
+      "name": "lock",
+      "file": "lock.svg"
+    },
+    {
+      "name": "logout",
+      "file": "logout.svg"
+    },
+    {
+      "name": "math",
+      "file": "math.svg"
+    },
+    {
+      "name": "media-text",
+      "file": "media-text.svg"
+    },
+    {
+      "name": "menu-03",
+      "file": "menu-03.svg"
+    },
+    {
+      "name": "moon",
+      "file": "moon.svg"
+    },
+    {
+      "name": "more",
+      "file": "more.svg"
+    },
+    {
+      "name": "package",
+      "file": "package.svg"
+    },
+    {
+      "name": "paragraph",
+      "file": "paragraph.svg"
+    },
+    {
+      "name": "pattern",
+      "file": "pattern.svg"
+    },
+    {
+      "name": "plus-circle",
+      "file": "plus-circle.svg"
+    },
+    {
+      "name": "plus",
+      "file": "plus.svg"
+    },
+    {
+      "name": "preformatted",
+      "file": "preformatted.svg"
+    },
+    {
+      "name": "pullquote",
+      "file": "pullquote.svg"
+    },
+    {
+      "name": "quote",
+      "file": "quote.svg"
+    },
+    {
+      "name": "redo",
+      "file": "redo.svg"
+    },
+    {
+      "name": "replace",
+      "file": "replace.svg"
+    },
+    {
+      "name": "reset",
+      "file": "reset.svg"
+    },
+    {
+      "name": "row",
+      "file": "row.svg"
+    },
+    {
+      "name": "search",
+      "file": "search.svg"
+    },
+    {
+      "name": "separator",
+      "file": "separator.svg"
+    },
+    {
+      "name": "settings",
+      "file": "settings.svg"
+    },
+    {
+      "name": "share-04",
+      "file": "share-04.svg"
+    },
+    {
+      "name": "share",
+      "file": "share.svg"
+    },
+    {
+      "name": "spacer",
+      "file": "spacer.svg"
+    },
+    {
+      "name": "stack",
+      "file": "stack.svg"
+    },
+    {
+      "name": "sun",
+      "file": "sun.svg"
+    },
+    {
+      "name": "symbol",
+      "file": "symbol.svg"
+    },
+    {
+      "name": "sync",
+      "file": "sync.svg"
+    },
+    {
+      "name": "table",
+      "file": "table.svg"
+    },
+    {
+      "name": "tag",
+      "file": "tag.svg"
+    },
+    {
+      "name": "trash",
+      "file": "trash.svg"
+    },
+    {
+      "name": "undo",
+      "file": "undo.svg"
+    },
+    {
+      "name": "ungroup",
+      "file": "ungroup.svg"
+    },
+    {
+      "name": "upload",
+      "file": "upload.svg"
+    },
+    {
+      "name": "user",
+      "file": "user.svg"
+    },
+    {
+      "name": "users",
+      "file": "users.svg"
+    },
+    {
+      "name": "verse",
+      "file": "verse.svg"
+    },
+    {
+      "name": "video",
+      "file": "video.svg"
+    },
+    {
+      "name": "x-close",
+      "file": "x-close.svg"
+    }
+  ]
+}
