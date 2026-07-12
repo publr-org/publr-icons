@@ -12,6 +12,7 @@ Social and brand icons do not belong here. They will have their own package.
 - `src/index.ts` — browser/TypeScript adapter.
 - `publr_icons.zig` — Zig adapter for the design-system and CMS.
 - `manifest.json` — stable machine-readable icon inventory.
+- `index.html` — generated, self-contained all-icons gallery.
 - `scripts/build.mjs` — validates SVGs and regenerates every adapter.
 
 ## Browser and editor
@@ -49,3 +50,6 @@ npm test
 
 Both commands use Node's standard library only. Generated files must be
 committed with SVG changes.
+
+Open `index.html` directly to browse every icon, search by name, switch theme,
+and click an icon to copy its canonical name.

@@ -1,0 +1,261 @@
+import { readFile, writeFile } from "node:fs/promises";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const manifest = JSON.parse(await readFile(resolve(root, "manifest.json"), "utf8"));
+
+const cards = await Promise.all(
+  manifest.icons.map(async ({ name, file }) => {
+    const svg = await readFile(resolve(root, "icons", file), "utf8");
+    const inner = svg.match(/<svg\b[^>]*>([\s\S]*?)<\/svg>/i)?.[1]?.trim();
+    if (!inner) throw new Error(`${file}: expected one non-empty <svg> root`);
+    return `
+      <button class="icon-card" type="button" data-name="${name}" aria-label="Copy ${name}">
+        <span class="icon-preview" aria-hidden="true">
+          <svg viewBox="${manifest.viewBox}" fill="none">${inner}</svg>
+        </span>
+        <span class="icon-name">${name}</span>
+        <span class="copy-state" aria-hidden="true">Copy</span>
+      </button>`;
+  }),
+);
+
+const html = `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>Publr Icons</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --background: #f7f8fa;
+        --foreground: #171717;
+        --surface: #fff;
+        --muted: #f0f1f3;
+        --muted-foreground: #6b6f76;
+        --border: #dedfe3;
+        --primary: #258fe3;
+        --ring: rgb(37 143 227 / 24%);
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --background: #171717;
+        --foreground: #f5f5f5;
+        --surface: #222;
+        --muted: #303030;
+        --muted-foreground: #a3a3a3;
+        --border: #383838;
+        --primary: #2e97e9;
+        --ring: rgb(46 151 233 / 28%);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          color-scheme: dark;
+          --background: #171717;
+          --foreground: #f5f5f5;
+          --surface: #222;
+          --muted: #303030;
+          --muted-foreground: #a3a3a3;
+          --border: #383838;
+          --primary: #2e97e9;
+          --ring: rgb(46 151 233 / 28%);
+        }
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        background: var(--background);
+        color: var(--foreground);
+        font-size: 14px;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      button, input { font: inherit; }
+
+      .page-header {
+        position: sticky;
+        z-index: 10;
+        top: 0;
+        border-bottom: 1px solid var(--border);
+        background: color-mix(in srgb, var(--background) 88%, transparent);
+        backdrop-filter: blur(14px);
+      }
+
+      .header-inner, main {
+        width: min(1440px, 100%);
+        margin-inline: auto;
+        padding-inline: 24px;
+      }
+
+      .header-inner {
+        display: flex;
+        min-height: 72px;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .brand { min-width: max-content; }
+      h1 { margin: 0; font-size: 18px; line-height: 1.2; }
+      .count { margin-top: 3px; color: var(--muted-foreground); font-size: 12px; }
+
+      .search-wrap { position: relative; flex: 1; max-width: 520px; margin-left: auto; }
+      .search-icon { position: absolute; top: 50%; left: 13px; width: 16px; height: 16px; color: var(--muted-foreground); transform: translateY(-50%); pointer-events: none; }
+      #search {
+        width: 100%;
+        height: 40px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        outline: none;
+        background: var(--surface);
+        color: var(--foreground);
+        padding: 0 14px 0 40px;
+      }
+      #search:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--ring); }
+      #search::placeholder { color: var(--muted-foreground); }
+
+      .theme-toggle {
+        display: inline-grid;
+        width: 40px;
+        height: 40px;
+        flex: none;
+        cursor: pointer;
+        place-items: center;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--surface);
+        color: var(--foreground);
+      }
+      .theme-toggle:hover { background: var(--muted); }
+      .theme-toggle svg { width: 18px; height: 18px; }
+
+      main { padding-top: 28px; padding-bottom: 48px; }
+      .icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); gap: 12px; }
+
+      .icon-card {
+        position: relative;
+        display: flex;
+        min-width: 0;
+        min-height: 132px;
+        cursor: pointer;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        outline: none;
+        background: var(--surface);
+        color: var(--foreground);
+        transition: border-color 100ms, background-color 100ms, transform 100ms;
+      }
+      .icon-card:hover { border-color: var(--primary); background: var(--muted); transform: translateY(-1px); }
+      .icon-card:focus-visible { border-color: var(--primary); box-shadow: 0 0 0 3px var(--ring); }
+      .icon-card[hidden] { display: none; }
+
+      .icon-preview { display: grid; width: 38px; height: 38px; place-items: center; }
+      .icon-preview svg { width: 28px; height: 28px; }
+      .icon-name { width: calc(100% - 20px); overflow: hidden; text-align: center; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; font-weight: 600; }
+      .copy-state { position: absolute; top: 8px; right: 8px; color: var(--muted-foreground); font-size: 10px; opacity: 0; transition: opacity 100ms; }
+      .icon-card:hover .copy-state, .icon-card:focus-visible .copy-state, .icon-card[data-copied="true"] .copy-state { opacity: 1; }
+      .icon-card[data-copied="true"] .copy-state { color: var(--primary); }
+
+      .empty { display: none; padding: 80px 20px; color: var(--muted-foreground); text-align: center; }
+      .empty[data-visible="true"] { display: block; }
+
+      @media (max-width: 640px) {
+        .header-inner { min-height: auto; flex-wrap: wrap; gap: 12px; padding-block: 14px; }
+        .brand { width: calc(100% - 52px); }
+        .search-wrap { order: 3; width: 100%; max-width: none; }
+        .header-inner, main { padding-inline: 16px; }
+        .icon-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      }
+    </style>
+    <script>
+      (() => {
+        const saved = localStorage.getItem("publr-icons-theme");
+        if (saved) document.documentElement.dataset.theme = saved;
+      })();
+    </script>
+  </head>
+  <body>
+    <header class="page-header">
+      <div class="header-inner">
+        <div class="brand">
+          <h1>Publr Icons</h1>
+          <div class="count"><span id="visible-count">${manifest.icons.length}</span> of ${manifest.icons.length} UI icons</div>
+        </div>
+        <label class="search-wrap">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m16 16 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <input id="search" type="search" placeholder="Search icons…" autocomplete="off" aria-label="Search icons">
+        </label>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle theme">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.64 5.64l1.42 1.42M16.94 16.94l1.42 1.42M18.36 5.64l-1.42 1.42M7.06 16.94l-1.42 1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/></svg>
+        </button>
+      </div>
+    </header>
+    <main>
+      <div class="icon-grid" id="icon-grid">${cards.join("")}
+      </div>
+      <div class="empty" id="empty">No icons match your search.</div>
+    </main>
+    <script>
+      const cards = [...document.querySelectorAll(".icon-card")];
+      const search = document.querySelector("#search");
+      const visibleCount = document.querySelector("#visible-count");
+      const empty = document.querySelector("#empty");
+
+      const filter = () => {
+        const query = search.value.trim().toLowerCase();
+        let visible = 0;
+        for (const card of cards) {
+          const match = !query || card.dataset.name.includes(query);
+          card.hidden = !match;
+          if (match) visible++;
+        }
+        visibleCount.textContent = String(visible);
+        empty.dataset.visible = String(visible === 0);
+      };
+
+      search.addEventListener("input", filter);
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "/" && document.activeElement !== search) {
+          event.preventDefault();
+          search.focus();
+        }
+      });
+
+      for (const card of cards) {
+        card.addEventListener("click", async () => {
+          await navigator.clipboard.writeText(card.dataset.name);
+          card.dataset.copied = "true";
+          card.querySelector(".copy-state").textContent = "Copied";
+          setTimeout(() => {
+            card.dataset.copied = "false";
+            card.querySelector(".copy-state").textContent = "Copy";
+          }, 1200);
+        });
+      }
+
+      document.querySelector("#theme-toggle").addEventListener("click", () => {
+        const root = document.documentElement;
+        const current = root.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        const next = current === "dark" ? "light" : "dark";
+        root.dataset.theme = next;
+        localStorage.setItem("publr-icons-theme", next);
+      });
+    </script>
+  </body>
+</html>
+`;
+
+await writeFile(resolve(root, "index.html"), html);
+console.log(`Generated one-page gallery for ${manifest.icons.length} UI icons.`);
