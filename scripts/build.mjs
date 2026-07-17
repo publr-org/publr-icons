@@ -78,7 +78,7 @@ export function mountIconSprite(
     return existing as SVGSVGElement;
   const host = doc.createElement("div");
   host.innerHTML = \`<svg id="\${prefix}-sprite" style="display:none" aria-hidden="true">\${Object.entries(ICONS)
-    .map(([name, body]) => \`<symbol id="\${prefix}-\${name}" viewBox="\${ICON_VIEWBOX}">\${body}</symbol>\`)
+    .map(([name, body]) => \`<symbol id="\${prefix}-\${name}" viewBox="\${ICON_VIEWBOX}" fill="none">\${body}</symbol>\`)
     .join("")}</svg>\`;
   const sprite = host.firstElementChild as SVGSVGElement;
   doc.body.appendChild(sprite);
