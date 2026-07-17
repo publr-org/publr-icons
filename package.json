@@ -6,6 +6,7 @@
   "sideEffects": false,
   "files": [
     "icons",
+    "figma-plugin",
     "index.html",
     "src/index.ts",
     "publr_icons.zig",
@@ -22,7 +23,7 @@
     "./manifest.json": "./manifest.json"
   },
   "scripts": {
-    "build": "node scripts/build.mjs && node scripts/build-gallery.mjs",
+    "build": "node scripts/build.mjs && node scripts/build-gallery.mjs && node scripts/build-figma-plugin.mjs",
     "test": "node --test tests/*.test.mjs"
   },
   "engines": {
